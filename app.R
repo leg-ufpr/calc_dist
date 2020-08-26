@@ -174,117 +174,180 @@ ui <- navbarPage(
                        )
             )
         ),
+        ## X-Square ----------------------------------------------------
+        tabPanel(
+            "Distribuição Chi quadrado",
+            fluidPage(
+                column(3,
+                       wellPanel(
+                           numericInput(
+                               inputId = "x_chisq_lower",
+                               label = "Limite inferior de x",
+                               value = 0,
+                               min = 0
+                           ),
+                           numericInput(
+                               inputId = "x_chisq_upper",
+                               label = "Limite superior de x",
+                               value = 5,
+                               min = 0
+                           ),
+                           numericInput(
+                               inputId = "df_chisq",
+                               label = "Graus de liberdade",
+                               value = 2,
+                               min = 1
+                           ),
+                           checkboxInput(
+                               inputId = "tail_chisq",
+                               label = "Cauda inferior (P[X < x])",
+                               value = TRUE
+                           ),
+                           verbatimTextOutput("chisq"),
+                           submitButton(
+                               text = "Calcular!"
+                           )
+                       )
+                       ),
+                column(9,
+                       wellPanel(
+                           plotOutput("plot_chisq")
+                       )
+                       )
+            )
+        ),
+        ## Q-X ---------------------------------------------------------
+        tabPanel(
+            "Quantis da Distribuição Chi-Square",
+            fluidRow(
+                column(3,
+                       wellPanel(
+                           numericInput(
+                               inputId = "p_qchisq",
+                               label = "Probabilidade",
+                               value = .5,
+                               min = 0,
+                               max = 1,
+                               step = .01
+                           ),
+                           numericInput(
+                               inputId = "df_qchisq",
+                               label = "Graus de liberdade",
+                               value = 1,
+                               min = 1
+                           ),
+                           checkboxInput(
+                               inputId = "tail_qchisq",
+                               label = "Cauda inferior (P[X < x])",
+                               value = TRUE
+                           ),
+                           verbatimTextOutput("chisq_q"),
+                           submitButton(
+                               text = "Calcular!"
+                           )
+                       )
+                       ),
+                column(9,
+                       wellPanel(
+                           plotOutput("plot_qchisq")
+                       )
+                       )
+            )
+        ),
 
-# X-Square ----------------------------------------------------------------
+        ## F -----------------------------------------------------------
+        tabPanel(
+            "Distribuição F",
+            fluidPage(
+                column(3,
+                       wellPanel(
+                           numericInput(
+                               inputId = "x_f_lower",
+                               label = "Limite inferior de x",
+                               value = 0,
+                               min = 0
+                           ),
+                           numericInput(
+                               inputId = "x_f_upper",
+                               label = "Limite superior de x",
+                               value = 5,
+                               min = 0
+                           ),
+                           numericInput(
+                               inputId = "df1_f",
+                               label = "Graus de liberdade do numerador",
+                               value = 1,
+                               min = 1
+                           ),
+                           numericInput(
+                               inputId = "df2_f",
+                               label = "Graus de liberdade do denominador",
+                               value = 2,
+                               min = 1
+                           ),
+                           checkboxInput(
+                               inputId = "tail_f",
+                               label = "Cauda inferior (P[X < x])",
+                               value = TRUE
+                           ),
+                           verbatimTextOutput("f"),
+                           submitButton(
+                               text = "Calcular!"
+                           )
+                       )
+                       ),
+                column(9,
+                       wellPanel(
+                           plotOutput("plot_f")
+                       )
+                       )
+            )
+        ),
+        ## Q F ---------------------------------------------------------
+        tabPanel(
+            "Quantis da Distribuição F",
+            fluidRow(
+                column(3,
+                       wellPanel(
+                           numericInput(
+                               inputId = "p_qf",
+                               label = "Probabilidade",
+                               value = .5,
+                               min = 0,
+                               max = 1,
+                               step = .01
+                           ),
+                           numericInput(
+                               inputId = "df1_qf",
+                               label = "Graus de liberdade do numerador",
+                               value = 1,
+                               min = 1
+                           ),
+                           numericInput(
+                               inputId = "df2_qf",
+                               label = "Graus de liberdade do denominador",
+                               value = 2,
+                               min = 1
+                           ),
+                           checkboxInput(
+                               inputId = "tail_qf",
+                               label = "Cauda inferior (P[X < x])",
+                               value = TRUE
+                           ),
+                           verbatimTextOutput("f_q"),
+                           submitButton(
+                               text = "Calcular!"
+                           )
+                       )
+                       ),
+                column(9,
+                       wellPanel(
+                           plotOutput("plot_qf")
+                       )
+                       )
+            )
+        ),
 
-
-             tabPanel(
-
-               "Distribuição Chi quadrado",
-
-               fluidPage(
-
-                 column(3,
-
-                        wellPanel(
-
-                          numericInput(
-                            inputId = "x_chisq_lower",
-                            label = "Limite inferior de x",
-                            value = 0,
-                            min = 0
-                          ),
-
-                          numericInput(
-                            inputId = "x_chisq_upper",
-                            label = "Limite superior de x",
-                            value = 5,
-                            min = 0
-                          ),
-
-                          numericInput(
-                            inputId = "df_chisq",
-                            label = "Graus de liberdade",
-                            value = 2,
-                            min = 1
-                          ),
-
-                          checkboxInput(
-                            inputId = "tail_chisq",
-                            label = "Cauda inferior (P[X < x])",
-                            value = TRUE
-                          ),
-
-                          verbatimTextOutput("chisq"),
-
-                          submitButton(
-                            text = "Calcular!"
-                          )
-                        )
-                 ),
-
-                 column(9,
-
-                        wellPanel(
-
-                          plotOutput("plot_chisq")
-
-                        )
-                 )
-               )
-             ),
-
-# Q-X ------------------------------------------------------------------
-
-             tabPanel(
-
-               "Quantis da Distribuição Chi-Square",
-
-               fluidRow(
-
-                 column(3,
-
-                        wellPanel(
-
-                          numericInput(
-                            inputId = "p_qchisq",
-                            label = "Probabilidade",
-                            value = .5,
-                            min = 0,
-                            max = 1,
-                            step = .01
-                          ),
-
-                          numericInput(
-                            inputId = "df_qchisq",
-                            label = "Graus de liberdade",
-                            value = 1,
-                            min = 1
-                          ),
-
-                          checkboxInput(
-                            inputId = "tail_qchisq",
-                            label = "Cauda inferior (P[X < x])",
-                            value = TRUE
-                          ),
-
-                          verbatimTextOutput("chisq_q"),
-
-                          submitButton(
-                            text = "Calcular!"
-                          )
-                        )
-                 ),
-
-                 column(9,
-
-                        wellPanel(
-
-                          plotOutput("plot_qchisq")
-                        )
-                 )
-               )
-             ),
 
 # Exponencial -------------------------------------------------------------
 
@@ -1270,315 +1333,423 @@ server <- function(input, output){
 
   })
 
-  # t-Student - Plot ----------------------------------------------------------------
-
-  output$plot_t <- renderPlot({
-
-    if(is.finite(input$x_t_lower) & is.finite(input$x_t_upper)){
-      lower <- input$x_t_lower
-      upper <- input$x_t_upper
-      x <- seq(from = lower, to = upper, length.out = 1000)
-      col <- "red"
-      border <- "black"
-    }
-    else{
-      if(is.finite(input$x_t_lower)){
-        if(input$tail_t){
-          lower <- -6
-          upper <- input$x_t_lower
+    ## t-Student - Plot ------------------------------------------------
+    output$plot_t <- renderPlot({
+        if(is.finite(input$x_t_lower) & is.finite(input$x_t_upper)){
+            lower <- input$x_t_lower
+            upper <- input$x_t_upper
+            x <- seq(from = lower, to = upper, length.out = 1000)
+            col <- "red"
+            border <- "black"
         }
         else{
-          lower <- input$x_t_lower
-          upper <- 6
+            if(is.finite(input$x_t_lower)){
+                if(input$tail_t){
+                    lower <- -6
+                    upper <- input$x_t_lower
+                }
+                else{
+                    lower <- input$x_t_lower
+                    upper <- 6
+                }
+                x <- seq(from = lower, to = upper, length.out = 1000)
+                col <- "red"
+                border <- "black"
+            }
+            else if(is.finite(input$x_t_upper)){
+                if(input$tail_t){
+                    lower <- -6
+                    upper <- input$x_t_upper
+                }
+                else{
+                    lower <- input$x_t_upper
+                    upper <- 6
+                }
+                x <- seq(from = lower, to = upper, length.out = 1000)
+                col <- "red"
+                border <- "black"
+            }
+            else if(!is.finite(input$x_t_lower) & !is.finite(input$x_t_lower)){
+                lower <- -6
+                upper <- 6
+                x <- seq(from = lower, to = upper, length.out = 1000)
+                col = NA
+                border = NA
+            }
         }
+        crv_t <- curve(
+            dt(x, input$df_t),
+            xlim = c(-4 * input$df_t/(input$df_t - 2), 4 *
+                                                       input$df_t/(input$df_t - 2)),
+            ylab = "Probabilidade")
+        y <- dt(x, input$df_t)
+        xcoord <- c(lower, x, upper)
+        ycoord <- c(0, y, 0)
+        polygon(x = xcoord,
+                y = ycoord,
+                col = "red", border = "black")
+        if(is.finite(input$x_t_lower) & is.finite(input$x_t_upper)){
+            lower <- input$x_t_lower
+            upper <- input$x_t_upper
+            lab <- pt(upper, input$df_t) - pt(lower, input$df_t)
+        }
+        else {
+            if(is.finite(input$x_t_lower)){
+                lower <- input$x_t_lower
+                lab <- 1 - pt(lower, input$df_t, lower = input$tail_t == FALSE)
+            }
+            else if(is.finite(input$x_t_upper)){
+                upper <- input$x_t_upper
+                lab <- pt(upper, input$df_t, lower = input$tail_t)
+            }
+            else if(!is.finite(input$x_t_lower) & !is.finite(input$x_t_lower)){
+                lab <- 1
+            }
+        }
+        text(x = median(crv_t$x),
+             y = max(crv_t$y)/2,
+             labels = round(lab, 4),
+             cex = 2.5)
+    })
+    ## t-Student - Output ----------------------------------------------
+    output$t <- renderPrint({
+        if(is.finite(input$x_t_lower) & is.finite(input$x_t_upper)){
+            lower <- input$x_t_lower
+            upper <- input$x_t_upper
+            pt(upper, input$df_t) - pt(lower, input$df_t)
+        }
+        else {
+            if(is.finite(input$x_t_lower)){
+                lower <- input$x_t_lower
+                1 - pt(lower, input$df_t, lower = input$tail_t == FALSE)
+            }
+            else if(is.finite(input$x_t_upper)){
+                upper <- input$x_t_upper
+                pt(upper, input$df_t, lower = input$tail_t)
+            }
+            else if(!is.finite(input$x_t_lower) & !is.finite(input$x_t_lower)){
+                lower <- input$mu - 4*input$sd
+                upper <- input$mu + 4*input$sd
+            }
+        }
+    })
+    ## Q-t - Plot ------------------------------------------------------
+    output$plot_qt <- renderPlot({
+        crv_qt <- curve(dt(x, input$df_qt), xlim = c(-4, 4), ylab = "Probabilidade")
+        y_q <- qt(input$p_t, input$df_qt, lower.tail = input$tail_q_t)
+        if(input$tail_q_t == FALSE){
+            x_q <- seq(
+                from = qt(input$p_t, input$df_qt, lower.tail = FALSE),
+                to = qt(.99999, input$df_qt), length.out = 1000)
+        } else {
+            x_q <- seq(from = qt(.00001, input$df_qt), to = y_q, length.out = 1000)
+        }
+        y_q.coord <- dt(x_q, input$df_qt)
+        polygon(x = c(min(x_q), x_q, max(x_q)),
+                y = c(0, y_q.coord, 0),
+                col = "red", border = "black")
+        ## text(x = input$mu_q,
+        ##      y = max(crv_q$y)/2,
+        ##      labels = round(y_q),
+        ##      cex = 2.5)
+    })
+    ## Q-t - Output ----------------------------------------------------
+    output$t_q <- renderPrint({
+        qt(input$p_t, input$df_qt, lower.tail = input$tail_q_t)
+    })
+    ## X-Square - Plot -------------------------------------------------
+    output$plot_chisq <- renderPlot({
+        if(is.finite(input$x_chisq_lower) & is.finite(input$x_chisq_upper)){
+            lower <- input$x_chisq_lower
+            upper <- input$x_chisq_upper
+            x <- seq(from = lower, to = upper, length.out = 1000)
+            col <- "red"
+            border <- "black"
+        }
+        else {
+            if(is.finite(input$x_chisq_lower)){
+                if(input$tail_chisq){
+                    lower <- 0
+                    upper <- input$x_chisq_lower
+                }
+                else {
+                    lower <- input$x_chisq_lower
+                    upper <- input$df_chisq * 8
+                }
+                x <- seq(from = lower, to = upper, length.out = 1000)
+                col <- "red"
+                border <- "black"
+            }
+            else if(is.finite(input$x_chisq_upper)){
+                if(input$tail_chisq){
+                    lower <- 0
+                    upper <- input$x_chisq_upper
+                }
+                else {
+                    lower <- input$x_chisq_upper
+                    upper <- input$df_chisq * 8
+                }
+                x <- seq(from = lower, to = upper, length.out = 1000)
+                col <- "red"
+                border <- "black"
+            }
+            else if(!is.finite(input$x_chisq_lower) & !is.finite(input$x_chisq_lower)){
+                lower <- 0
+                upper <- input$df_chisq * 8
+                x <- seq(from = lower, to = upper, length.out = 1000)
+                col = NA
+                border = NA
+            }
+        }
+        crv_chisq <- curve(
+            dchisq(x, input$df_chisq),
+            xlim = c(0, 8 * input$df_chisq),
+            ylab = "Probabilidade")
         x <- seq(from = lower, to = upper, length.out = 1000)
-        col <- "red"
-        border <- "black"
-      }
-      else if(is.finite(input$x_t_upper)){
-        if(input$tail_t){
-          lower <- -6
-          upper <- input$x_t_upper
+        y <- dchisq(x, input$df_chisq)
+        if(input$df_chisq == 1 & x[1] == 0){
+            y[1] <- 0
         }
-        else{
-          lower <- input$x_t_upper
-          upper <- 6
+        xcoord <- c(lower, x, upper)
+        ycoord <- c(0, y, 0)
+        polygon(x = xcoord,
+                y = ycoord,
+                col = "red", border = "black")
+        if(is.finite(input$x_chisq_lower) & is.finite(input$x_chisq_upper)){
+            lower <- input$x_chisq_lower
+            upper <- input$x_chisq_upper
+            lab <- pchisq(upper, input$df_chisq) - pchisq(lower, input$df_chisq)
         }
+        else {
+            if(is.finite(input$x_chisq_lower)){
+                lower <- input$x_chisq_lower
+                lab <- 1 - pchisq(lower, input$df_chisq, lower = input$tail_chisq == FALSE)
+            }
+            else if(is.finite(input$x_chisq_upper)){
+                upper <- input$x_chisq_upper
+                lab <- pchisq(upper, input$df_chisq, lower = input$tail_chisq)
+            }
+            else if(!is.finite(input$x_chisq_lower) & !is.finite(input$x_chisq_lower)){
+                lab <- 1
+            }
+        }
+        text(x = median(crv_chisq$x),
+             y = max(crv_chisq$y)/2,
+             labels = round(lab, 4),
+             cex = 2.5)
+    })
+    ## X-Square - Output -----------------------------------------------
+    output$chisq <- renderPrint({
+        if(is.finite(input$x_chisq_lower) & is.finite(input$x_chisq_upper)){
+            lower <- input$x_chisq_lower
+            upper <- input$x_chisq_upper
+            pchisq(upper, input$df_chisq) - pchisq(lower, input$df_chisq)
+        }
+        else {
+            if(is.finite(input$x_chisq_lower)){
+                lower <- input$x_chisq_lower
+                1 - pchisq(lower, input$df_chisq, lower = input$tail_chisq == FALSE)
+            }
+            else if(is.finite(input$x_chisq_upper)){
+                upper <- input$x_chisq_upper
+                pchisq(upper, input$df_chisq, lower = input$tail_chisq)
+            }
+            else if(!is.finite(input$x_chisq_lower) & !is.finite(input$x_chisq_lower)){
+                lower <- input$mu - 4*input$sd
+                upper <- input$mu + 4*input$sd
+                pchisq(upper, input$df_chisq, lower = input$tail_chisq)
+                - pchisq(lower, input$df_chisq, lower = input$tail_chisq)
+            }
+        }
+    })
+    ## Q-X - Plot ------------------------------------------------------
+    output$plot_qchisq <- renderPlot({
+        if(input$df_qchisq == 1){
+            chisq_x <- seq(from = 0, to = 5, length.out = 1000)
+            chisq_y <- dchisq(chisq_x, input$df_qchisq)
+            chisq_y[which(chisq_y > 1)] <- 0
+            plot(chisq_y ~ chisq_x, t = "l", ylim = c(0, 2))
+        } else {
+            crv_q <- curve(dchisq(x, input$df_qchisq),
+                           xlim = c(qchisq(.00001, input$df_qchisq),
+                                    qchisq(.99999, input$df_qchisq)),
+                           ylab = "Probabilidade")
+        }
+        y_q <- qchisq(input$p_qchisq, input$df_qchisq, lower.tail = input$tail_qchisq)
+        if(input$tail_qchisq == FALSE){
+            x_q <- seq(
+                from = qchisq(input$p_qchisq, input$df_qchisq,
+                              lower.tail = FALSE),
+                to = qchisq(.99999, input$df_qchisq), length.out = 1000)
+        } else {
+            x_q <- seq(from = qchisq(.00001, input$df_qchisq),
+                       to = y_q, length.out = 1000)
+        }
+        y_q.coord <- dchisq(x_q, input$df_qchisq)
+        polygon(x = c(min(x_q), x_q, max(x_q)),
+                y = c(0, y_q.coord, 0),
+                col = "red", border = "black")
+        ## text(x = input$mu_q,
+        ##      y = max(crv_q$y)/2,
+        ##      labels = round(y_q),
+        ##      cex = 2.5)
+    })
+    ## Q-X - Output ----------------------------------------------------
+    output$chisq_q <- renderPrint({
+        qchisq(input$p_qchisq, input$df_qchisq, lower.tail = input$tail_qchisq)
+    })
+
+
+
+    ## F - Plot --------------------------------------------------------
+    output$plot_f <- renderPlot({
+        if(is.finite(input$x_f_lower) & is.finite(input$x_f_upper)){
+            lower <- input$x_f_lower
+            upper <- input$x_f_upper
+            x <- seq(from = lower, to = upper, length.out = 1000)
+            col <- "red"
+            border <- "black"
+        }
+        else {
+            if(is.finite(input$x_f_lower)){
+                if(input$tail_f){
+                    lower <- 0
+                    upper <- input$x_f_lower
+                }
+                else {
+                    lower <- input$x_f_lower
+                    upper <- input$df1_f * 8
+                }
+                x <- seq(from = lower, to = upper, length.out = 1000)
+                col <- "red"
+                border <- "black"
+            }
+            else if(is.finite(input$x_f_upper)){
+                if(input$tail_f){
+                    lower <- 0
+                    upper <- input$x_f_upper
+                }
+                else {
+                    lower <- input$x_f_upper
+                    upper <- input$df1_f * 8
+                }
+                x <- seq(from = lower, to = upper, length.out = 1000)
+                col <- "red"
+                border <- "black"
+            }
+            else if(!is.finite(input$x_f_lower) & !is.finite(input$x_f_lower)){
+                lower <- 0
+                upper <- input$df1_f * 8
+                x <- seq(from = lower, to = upper, length.out = 1000)
+                col = NA
+                border = NA
+            }
+        }
+        crv_f <- curve(
+            df(x, input$df1_f, input$df2_f),
+            xlim = c(0, 8 * input$df1_f),
+            ylab = "Probabilidade")
         x <- seq(from = lower, to = upper, length.out = 1000)
-        col <- "red"
-        border <- "black"
-      }
-      else if(!is.finite(input$x_t_lower) & !is.finite(input$x_t_lower)){
-        lower <- -6
-        upper <- 6
-        x <- seq(from = lower, to = upper, length.out = 1000)
-        col = NA
-        border = NA
-      }
-    }
-
-    crv_t <- curve(dt(x, input$df_t), xlim = c(-4 * input$df_t/(input$df_t - 2), 4 * input$df_t/(input$df_t - 2)), ylab = "Probabilidade")
-
-    y <- dt(x, input$df_t)
-
-    xcoord <- c(lower, x, upper)
-    ycoord <- c(0, y, 0)
-
-    polygon(x = xcoord,
-            y = ycoord,
-            col = "red", border = "black")
-
-    if(is.finite(input$x_t_lower) & is.finite(input$x_t_upper)){
-      lower <- input$x_t_lower
-      upper <- input$x_t_upper
-      lab <- pt(upper, input$df_t) - pt(lower, input$df_t)
-    }
-    else{
-      if(is.finite(input$x_t_lower)){
-        lower <- input$x_t_lower
-        lab <- 1 - pt(lower, input$df_t, lower = input$tail_t == FALSE)
-      }
-      else if(is.finite(input$x_t_upper)){
-        upper <- input$x_t_upper
-        lab <- pt(upper, input$df_t, lower = input$tail_t)
-      }
-      else if(!is.finite(input$x_t_lower) & !is.finite(input$x_t_lower)){
-        lab <- 1
-      }
-    }
-
-    text(x = median(crv_t$x),
-         y = max(crv_t$y)/2,
-         labels = round(lab, 4),
-         cex = 2.5)
-
-  })
-
-  # t-Student - Output ----------------------------------------------------------------
-
-  output$t <- renderPrint({
-
-    if(is.finite(input$x_t_lower) & is.finite(input$x_t_upper)){
-      lower <- input$x_t_lower
-      upper <- input$x_t_upper
-      pt(upper, input$df_t) - pt(lower, input$df_t)
-    }
-    else{
-      if(is.finite(input$x_t_lower)){
-        lower <- input$x_t_lower
-        1 - pt(lower, input$df_t, lower = input$tail_t == FALSE)
-      }
-      else if(is.finite(input$x_t_upper)){
-        upper <- input$x_t_upper
-        pt(upper, input$df_t, lower = input$tail_t)
-      }
-      else if(!is.finite(input$x_t_lower) & !is.finite(input$x_t_lower)){
-        lower <- input$mu - 4*input$sd
-        upper <- input$mu + 4*input$sd
-      }
-    }
-
-  })
-
-  # Q-t - Plot ----------------------------------------------------------------
-
-  output$plot_qt <- renderPlot({
-
-    crv_qt <- curve(dt(x, input$df_qt), xlim = c(-4, 4), ylab = "Probabilidade")
-
-    y_q <- qt(input$p_t, input$df_qt, lower.tail = input$tail_q_t)
-
-    if(input$tail_q_t == FALSE){
-      x_q <- seq(from = qt(input$p_t, input$df_qt, lower.tail = FALSE), to = qt(.99999, input$df_qt), length.out = 1000)
-    } else {
-      x_q <- seq(from = qt(.00001, input$df_qt), to = y_q, length.out = 1000)
-    }
-
-    y_q.coord <- dt(x_q, input$df_qt)
-
-
-    polygon(x = c(min(x_q), x_q, max(x_q)),
-            y = c(0, y_q.coord, 0),
-            col = "red", border = "black")
-
-    # text(x = input$mu_q,
-    #      y = max(crv_q$y)/2,
-    #      labels = round(y_q),
-    #      cex = 2.5)
-
-  })
-
-  # Q-t - Output ----------------------------------------------------------------
-
-  output$t_q <- renderPrint({
-
-    qt(input$p_t, input$df_qt, lower.tail = input$tail_q_t)
-
-  })
-
-  # X-Square - Plot ----------------------------------------------------------------
-
-  output$plot_chisq <- renderPlot({
-
-    if(is.finite(input$x_chisq_lower) & is.finite(input$x_chisq_upper)){
-      lower <- input$x_chisq_lower
-      upper <- input$x_chisq_upper
-      x <- seq(from = lower, to = upper, length.out = 1000)
-      col <- "red"
-      border <- "black"
-    }
-    else{
-      if(is.finite(input$x_chisq_lower)){
-        if(input$tail_chisq){
-          lower <- 0
-          upper <- input$x_chisq_lower
+        y <- df(x, input$df1_f, input$df2_f)
+        if(input$df1_f == 1 & x[1] == 0){
+            y[1] <- 0
         }
-        else{
-          lower <- input$x_chisq_lower
-          upper <- input$df_chisq * 8
+        xcoord <- c(lower, x, upper)
+        ycoord <- c(0, y, 0)
+        polygon(x = xcoord,
+                y = ycoord,
+                col = "red", border = "black")
+        if(is.finite(input$x_f_lower) & is.finite(input$x_f_upper)){
+            lower <- input$x_f_lower
+            upper <- input$x_f_upper
+            lab <- pf(upper, input$df1_f, input$df2_f) -
+                pf(lower, input$df1_f, input$df2_f)
         }
-        x <- seq(from = lower, to = upper, length.out = 1000)
-        col <- "red"
-        border <- "black"
-      }
-      else if(is.finite(input$x_chisq_upper)){
-        if(input$tail_chisq){
-          lower <- 0
-          upper <- input$x_chisq_upper
+        else {
+            if(is.finite(input$x_f_lower)){
+                lower <- input$x_f_lower
+                lab <- 1 - pf(lower, input$df1_f, input$df2_f,
+                              lower = input$tail_f == FALSE)
+            }
+            else if(is.finite(input$x_f_upper)){
+                upper <- input$x_f_upper
+                lab <- pf(upper, input$df1_f, input$df2_f,
+                          lower = input$tail_f)
+            }
+            else if(!is.finite(input$x_f_lower) & !is.finite(input$x_f_lower)){
+                lab <- 1
+            }
         }
-        else{
-          lower <- input$x_chisq_upper
-          upper <- input$df_chisq * 8
+        text(x = median(crv_f$x),
+             y = max(crv_f$y)/2,
+             labels = round(lab, 4),
+             cex = 2.5)
+    })
+    ## F - Output ------------------------------------------------------
+    output$f <- renderPrint({
+        if(is.finite(input$x_f_lower) & is.finite(input$x_f_upper)){
+            lower <- input$x_f_lower
+            upper <- input$x_f_upper
+            pf(upper, input$df1_f, input$df2_f) -
+                pf(lower, input$df1_f, input$df2_f)
         }
-        x <- seq(from = lower, to = upper, length.out = 1000)
-        col <- "red"
-        border <- "black"
-      }
-      else if(!is.finite(input$x_chisq_lower) & !is.finite(input$x_chisq_lower)){
-        lower <- 0
-        upper <- input$df_chisq * 8
-        x <- seq(from = lower, to = upper, length.out = 1000)
-        col = NA
-        border = NA
-      }
-    }
+        else {
+            if(is.finite(input$x_f_lower)){
+                lower <- input$x_f_lower
+                1 - pf(lower, input$df1_f, input$df2_f,
+                           lower = input$tail_f == FALSE)
+            }
+            else if(is.finite(input$x_f_upper)){
+                upper <- input$x_f_upper
+                pf(upper, input$df1_f, input$df2_f,
+                   lower = input$tail_f)
+            }
+            else if(!is.finite(input$x_f_lower) & !is.finite(input$x_f_lower)){
+                lower <- input$mu - 4*input$sd
+                upper <- input$mu + 4*input$sd
+                pf(upper, input$df1_f, input$df2_f, lower = input$tail_f)
+                - pf(lower, input$df1_f, input_df2_f, lower = input$tail_f)
+            }
+        }
+    })
+    ## Q-X - Plot ------------------------------------------------------
+    output$plot_qf <- renderPlot({
+        if(input$df1_qf == 1){
+            f_x <- seq(from = 0, to = 5, length.out = 1000)
+            f_y <- df(f_x, input$df1_qf, input$df2_qf)
+            f_y[which(f_y > 1)] <- 0
+            plot(f_y ~ f_x, t = "l", ylim = c(0, 2))
+        } else {
+            crv_q <- curve(df(x, input$df1_qf, input$df2_qf),
+                           xlim = c(qf(.00001, input$df1_qf, input$df2_qf),
+                                    qf(.99999, input$df1_qf, input$df2_qf)),
+                           ylab = "Probabilidade")
+        }
+        y_q <- qf(input$p_qf, input$df1_qf, input$df2_qf,
+                  lower.tail = input$tail_qf)
+        if(input$tail_qf == FALSE){
+            x_q <- seq(
+                from = qf(input$p_qf, input$df1_qf, input$df2_qf,
+                          lower.tail = FALSE),
+                to = qf(.99999, input$df1_qf, input$df2_qf), length.out = 1000)
+        } else {
+            x_q <- seq(from = qchisq(.00001, input$df1_qf, input$df2_qf),
+                       to = y_q, length.out = 1000)
+        }
+        y_q.coord <- df(x_q, input$df1_qf, input$df2_qf)
+        polygon(x = c(min(x_q), x_q, max(x_q)),
+                y = c(0, y_q.coord, 0),
+                col = "red", border = "black")
+        ## text(x = input$mu_q,
+        ##      y = max(crv_q$y)/2,
+        ##      labels = round(y_q),
+        ##      cex = 2.5)
+    })
+    ## Q-X - Output ----------------------------------------------------
+    output$f_q <- renderPrint({
+        qf(input$p_qf, input$df1_qf, input$df2_qf, lower.tail = input$tail_qf)
+    })
 
-    crv_chisq <- curve(dchisq(x, input$df_chisq), xlim = c(0, 8 * input$df_chisq), ylab = "Probabilidade")
-
-    x <- seq(from = lower, to = upper, length.out = 1000)
-
-    y <- dchisq(x, input$df_chisq)
-
-    if(input$df_chisq == 1 & x[1] == 0){
-      y[1] <- 0
-    }
-
-    xcoord <- c(lower, x, upper)
-    ycoord <- c(0, y, 0)
-
-    polygon(x = xcoord,
-            y = ycoord,
-            col = "red", border = "black")
-
-    if(is.finite(input$x_chisq_lower) & is.finite(input$x_chisq_upper)){
-      lower <- input$x_chisq_lower
-      upper <- input$x_chisq_upper
-      lab <- pchisq(upper, input$df_chisq) - pchisq(lower, input$df_chisq)
-    }
-    else{
-      if(is.finite(input$x_chisq_lower)){
-        lower <- input$x_chisq_lower
-        lab <- 1 - pchisq(lower, input$df_chisq, lower = input$tail_chisq == FALSE)
-      }
-      else if(is.finite(input$x_chisq_upper)){
-        upper <- input$x_chisq_upper
-        lab <- pchisq(upper, input$df_chisq, lower = input$tail_chisq)
-      }
-      else if(!is.finite(input$x_chisq_lower) & !is.finite(input$x_chisq_lower)){
-        lab <- 1
-      }
-    }
-
-    text(x = median(crv_chisq$x),
-         y = max(crv_chisq$y)/2,
-         labels = round(lab, 4),
-         cex = 2.5)
-
-  })
-
-  # X-Square - Output ----------------------------------------------------------------
-
-  output$chisq <- renderPrint({
-
-    if(is.finite(input$x_chisq_lower) & is.finite(input$x_chisq_upper)){
-      lower <- input$x_chisq_lower
-      upper <- input$x_chisq_upper
-      pchisq(upper, input$df_chisq) - pchisq(lower, input$df_chisq)
-    }
-    else{
-      if(is.finite(input$x_chisq_lower)){
-        lower <- input$x_chisq_lower
-        1 - pchisq(lower, input$df_chisq, lower = input$tail_chisq == FALSE)
-      }
-      else if(is.finite(input$x_chisq_upper)){
-        upper <- input$x_chisq_upper
-        pchisq(upper, input$df_chisq, lower = input$tail_chisq)
-      }
-      else if(!is.finite(input$x_chisq_lower) & !is.finite(input$x_chisq_lower)){
-        lower <- input$mu - 4*input$sd
-        upper <- input$mu + 4*input$sd
-        pchisq(upper, input$df_chisq, lower = input$tail_chisq) - pchisq(lower, input$df_chisq, lower = input$tail_chisq)
-      }
-    }
-
-  })
-
-  # Q-X - Plot ----------------------------------------------------------------
-
-  output$plot_qchisq <- renderPlot({
-
-    if(input$df_qchisq == 1){
-      chisq_x <- seq(from = 0, to = 5, length.out = 1000)
-
-      chisq_y <- dchisq(chisq_x, input$df_qchisq)
-
-      chisq_y[which(chisq_y > 1)] <- 0
-
-      plot(chisq_y ~ chisq_x, t = "l", ylim = c(0, 2))
-    } else {
-    crv_q <- curve(dchisq(x, input$df_qchisq), xlim = c(qchisq(.00001, input$df_qchisq), qchisq(.99999, input$df_qchisq)),
-                   ylab = "Probabilidade")
-    }
-
-    y_q <- qchisq(input$p_qchisq, input$df_qchisq, lower.tail = input$tail_qchisq)
-
-    if(input$tail_qchisq == FALSE){
-      x_q <- seq(from = qchisq(input$p_qchisq, input$df_qchisq, lower.tail = FALSE), to = qchisq(.99999, input$df_qchisq), length.out = 1000)
-    } else {
-      x_q <- seq(from = qchisq(.00001, input$df_qchisq), to = y_q, length.out = 1000)
-    }
-
-    y_q.coord <- dchisq(x_q, input$df_qchisq)
-
-
-    polygon(x = c(min(x_q), x_q, max(x_q)),
-            y = c(0, y_q.coord, 0),
-            col = "red", border = "black")
-
-    # text(x = input$mu_q,
-    #      y = max(crv_q$y)/2,
-    #      labels = round(y_q),
-    #      cex = 2.5)
-
-  })
-
-  # Q-X - Output ----------------------------------------------------------------
-
-  output$chisq_q <- renderPrint({
-
-    qchisq(input$p_qchisq, input$df_qchisq, lower.tail = input$tail_qchisq)
-
-  })
 
   # Expon - Plot ----------------------------------------------------------------
 
