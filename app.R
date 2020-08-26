@@ -1712,7 +1712,7 @@ server <- function(input, output){
             }
         }
     })
-    ## Q-X - Plot ------------------------------------------------------
+    ## Q-F - Plot ------------------------------------------------------
     output$plot_qf <- renderPlot({
         if(input$df1_qf == 1){
             f_x <- seq(from = 0, to = 5, length.out = 1000)
@@ -1733,7 +1733,7 @@ server <- function(input, output){
                           lower.tail = FALSE),
                 to = qf(.99999, input$df1_qf, input$df2_qf), length.out = 1000)
         } else {
-            x_q <- seq(from = qchisq(.00001, input$df1_qf, input$df2_qf),
+            x_q <- seq(from = qf(.00001, input$df1_qf, input$df2_qf),
                        to = y_q, length.out = 1000)
         }
         y_q.coord <- df(x_q, input$df1_qf, input$df2_qf)
@@ -1745,7 +1745,7 @@ server <- function(input, output){
         ##      labels = round(y_q),
         ##      cex = 2.5)
     })
-    ## Q-X - Output ----------------------------------------------------
+    ## Q-F - Output ----------------------------------------------------
     output$f_q <- renderPrint({
         qf(input$p_qf, input$df1_qf, input$df2_qf, lower.tail = input$tail_qf)
     })
